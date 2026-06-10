@@ -11,4 +11,4 @@ def square(side):
 side_length = 5.7
 area_result = square(side_length)
 
-print(f'Площадь квадрата со стороной {side_length}: {area_result}')
+print(f'Площадь квадрата со стороной {side_length} = {area_result}')
