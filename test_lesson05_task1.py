@@ -2,21 +2,20 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-def test_navigation():
+def test_multiple_elements():
     driver = webdriver.Chrome()
 
     try:
-        start_url = "https://httpbin.org/"
+        driver.get("https://httpbin.org/links/10")
 
-        driver.get(start_url)
+        links = driver.find_elements(By.TAG_NAME, "a")
 
-        html_form_link = driver.find_element(By.LINK_TEXT, "HTML Form")
-        html_form_link.click()
+        assert len(links) == 9
 
-        assert driver.current_url.endswith("/forms/post")
+        for link in links:
+            assert link.is_displayed()
 
-        driver.back()
+        assert "1" in links[0].text
 
-        assert driver.current_url == start_url
     finally:
         driver.quit()
