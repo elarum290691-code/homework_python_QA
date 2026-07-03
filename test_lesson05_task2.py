@@ -6,19 +6,17 @@ def test_form_submission():
     driver = webdriver.Chrome()
 
     try:
-        start_url = "https://httpbin.org/forms/post"
+        driver.get("https://httpbin.org/forms/post")
 
-        driver.get(start_url)
+        start_url = driver.current_url
 
-        name_field = driver.find_element(By.NAME, "custname")
-        name_field.send_keys("Валентин")
+        name = driver.find_element(By.NAME, "custname")
+        name.send_keys("Валентин")
 
-        submit_button = driver.find_element(
-            By.XPATH,
-            "//button[normalize-space()='Submit']",
-        )
-        submit_button.click()
+        submit = driver.find_element(By.XPATH, "//button[text()='Submit']")
+        submit.click()
 
         assert driver.current_url != start_url
+
     finally:
         driver.quit()
