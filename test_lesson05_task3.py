@@ -16,5 +16,6 @@ def test_multiple_elements():
             assert link.is_displayed()
 
         assert "1" in links[0].text
+
     finally:
         driver.quit()
